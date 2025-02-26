@@ -1,0 +1,24 @@
+{
+    "name": "Node.js Development",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "features": {},
+    "forwardPorts": [],
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/rock-paper-scissors,type=bind",
+    "workspaceFolder": "/workspaces/rock-paper-scissors",
+    "postCreateCommand": "npm install",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "dbaeumer.vscode-eslint",
+                "CoenraadS.bracket-pair-colorizer",
+                "eg2.vscode-npm-script",
+                "streetsidesoftware.code-spell-checker",
+                "formulahendry.auto-close-tag",
+                "christian-kohler.path-intellisense",
+                "PKief.material-icon-theme"
+            ]
+        }
+    }
+}
