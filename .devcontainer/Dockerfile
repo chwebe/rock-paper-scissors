@@ -1,7 +1,7 @@
 FROM node:23-slim
 
 # Install basic development tools
-RUN apt update && apt install -y less git procps
+RUN apt update && apt install -y less git procps curl wget
 
 # Ensure default node user has access to /usr/local/
 RUN mkdir -p /usr/local/share/npm-global && \
@@ -18,7 +18,7 @@ ENV PATH=$PATH:/usr/local/share/npm-global/bin
 WORKDIR /workspaces
 
 # Install global packages
-RUN npm install -g eslint prettier
+#RUN npm install -g eslint prettier
 
 # Default command
 CMD [ "sleep", "infinity" ]

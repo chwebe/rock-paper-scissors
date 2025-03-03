@@ -1,24 +1,22 @@
 {
     "name": "Node.js Development",
-    "build": {
-        "dockerfile": "Dockerfile"
-    },
-    "features": {},
-    "forwardPorts": [],
-    "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/rock-paper-scissors,type=bind",
-    "workspaceFolder": "/workspaces/rock-paper-scissors",
-    "postCreateCommand": "npm install",
+    "image": "node:16", // You can specify the Node.js version you need
+    "appPort": [3000], // Port your app will run on
+    "postCreateCommand": "npm install", // Optional: Run npm install after container creation
     "customizations": {
         "vscode": {
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash"
+            },
             "extensions": [
-                "dbaeumer.vscode-eslint",
-                "CoenraadS.bracket-pair-colorizer",
-                "eg2.vscode-npm-script",
-                "streetsidesoftware.code-spell-checker",
-                "formulahendry.auto-close-tag",
-                "christian-kohler.path-intellisense",
-                "PKief.material-icon-theme"
             ]
         }
+    },
+    "forwardPorts": [3000], // Forward port 3000 to localhost
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+    "workspaceFolder": "/workspace",
+    "remoteUser": "node",
+    "features": {
+        "ghcr.io/devcontainers/features/node:1": {}
     }
 }
