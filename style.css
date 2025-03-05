@@ -12,6 +12,19 @@ h1 {
   margin-bottom: 20px;
 }
 
+.current-score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.displayScore {
+  display: flex;
+  padding: 0 10px;
+  gap: 3px
+}
+
+
 button {
   background: rgb(61,66,62);
   border: 2px solid rgb(251,245,230);
@@ -20,7 +33,6 @@ button {
   margin: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
-  
   
 }
 

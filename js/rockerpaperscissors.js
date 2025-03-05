@@ -8,18 +8,11 @@ const assignedNumberToAction = {
     2 : 'scissors'
 }
 
-const { read } = require("fs");
-const { cp } = require("node:fs");
-
-const rl = require('node:readline').createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-
+export { assignedNumberToAction, PlayRound, GetComputerChoice, validateInput };
 
 function validateInput(userInput) {
     const userInputLower = userInput.toLowerCase()
-    return userInputResult = ((userInputLower === "rock") || (userInputLower === 'scissors') || (userInputLower === 'paper') ? userInputLower : 'False');
+    return ((userInputLower === "rock") || (userInputLower === 'scissors') || (userInputLower === 'paper') ? userInputLower : 'False');
 }
 
 function PlayRound(HumanChoice, ComputerChoice) {
@@ -53,13 +46,11 @@ function PlayRound(HumanChoice, ComputerChoice) {
   }
 
 
-function GetComputerChoice (randomNumber) {
+let GetComputerChoice = () => {
+    const randomNumber = Math.floor(Math.random() * 3);
     return assignedNumberToAction[randomNumber];
-}
-
-let test = GetComputerChoice((() => Math.floor(Math.random() * 3))())
-
-
+};
+    
 function displayResult (HumanChoice, ComputerChoice, func) {
     const result = func(HumanChoice, ComputerChoice);
     console.log("Your choice : " + HumanChoice + " & ComputerChoice: " + ComputerChoice)
@@ -94,29 +85,24 @@ function PlayTheGame(HumanChoice, ComputerChoice) {
 }
 
 function askQuestion() {
-    rl.question('Lets rock paper scissors ( press enter : rock, paper or scissors to play ( stop to stop the game ): ', answer => {
-        if(answer != 'stop') {
-            PlayTheGame(answer, GetComputerChoice((() => Math.floor(Math.random() * 3))()))
-            if(humanScore === 5) {
-                console.log("HUMAN WINS")
-                rl.close()
-            }
-            else if (ComputerScore === 5) {
-                console.log("Computer wins boooooooooooooo")
-            }
-            else {
-                askQuestion();
-            }
+    if(answer != 'stop') {
+        PlayTheGame(answer, GetComputerChoice((() => Math.floor(Math.random() * 3))()));
+        if(humanScore === 5) {
+            console.log("HUMAN WINS");
+            alert("HUMAN WINS");
+        }
+        else if (ComputerScore === 5) {
+            console.log("Computer wins boooooooooooooo");
+            alert("Computer wins boooooooooooooo");
         }
         else {
-            console.log('The game is finished.')
-            rl.close();
+            askQuestion();
         }
-    });
+    }
+    else {
+        console.log('The game is finished.');
+        alert('The game is finished.');
+    }
 }
-askQuestion();
 
-
-
-
-
+//askQuestion();
